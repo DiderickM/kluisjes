@@ -24,7 +24,11 @@ Keypad keypad = Keypad(makeKeymap(keymap), rowPins, colPins, numRows, numCols);
 
 void setup()
 {
+  pinMode(1, OUTPUT);
+  pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
   Serial.begin(9600);
   input = "";
 }
@@ -41,24 +45,31 @@ void loop()
     if (test == "#") {
       if (input == password[0]) {
         Serial.println("Access to locker 1 granted!");
-        digitalWrite(A0, HIGH);
+        digitalWrite(10, HIGH);
+        input = "";
       } else if (input == password[1]) {
         Serial.println("Access to locker 2 granted!");
-        digitalWrite(A1, HIGH);
+        digitalWrite(11, HIGH);
+        input = "";
       } else if (input == password[2]) {
         Serial.println("Access to locker 3 granted!");
-        digitalWrite(A2, HIGH);
+        // NOT FUNCTIONAL
       } else if (input == password[3]) {
         Serial.println("Access to locker 4 granted!");
-        digitalWrite(A3, HIGH);
+        // NOT FUNCTIONAL
       } else if (input == password[4]) {
         Serial.println("Access to locker 5 granted!");
-        digitalWrite(A4, HIGH);
+        // NOT FUNCTIONAL
       } else if (input == password[5]) {
         Serial.println("Access to locker 6 granted!");
-        digitalWrite(A5, HIGH);
+        // NOT FUNCTIONAL
       } else {
         input = "";
+        digitalWrite(1, LOW);
+        digitalWrite(10, LOW);
+        digitalWrite(11, LOW);
+        digitalWrite(12, LOW);
+        digitalWrite(13, LOW);
       }
     } else {
       input += keypressed;
