@@ -24,11 +24,8 @@ Keypad keypad = Keypad(makeKeymap(keymap), rowPins, colPins, numRows, numCols);
 
 void setup()
 {
-  pinMode(1, OUTPUT);
   pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
-  pinMode(12, OUTPUT);
-  pinMode(13, OUTPUT);
   Serial.begin(9600);
   input = "";
 }
@@ -36,8 +33,7 @@ void setup()
 //If key is pressed, this key is stored in 'keypressed' variable
 //If key is not equal to 'NO_KEY', then this key is printed out
 //if count=17, then count is reset back to 0 (this means no key is pressed during the whole keypad scan process
-void loop()
-{
+void loop(){
   char keypressed = keypad.getKey();
   if (keypressed != NO_KEY)
   {
@@ -65,11 +61,8 @@ void loop()
         // NOT FUNCTIONAL
       } else {
         input = "";
-        digitalWrite(1, LOW);
         digitalWrite(10, LOW);
         digitalWrite(11, LOW);
-        digitalWrite(12, LOW);
-        digitalWrite(13, LOW);
       }
     } else {
       input += keypressed;
