@@ -1,5 +1,10 @@
 #include <Keypad.h>
 
+#define k1 10
+#define k2 11
+#define k3 12
+#define k4 1
+
 String password[] ={"12021", "12022", "12023", "12024", "12025", "12026"};
 String input;
 
@@ -24,8 +29,10 @@ Keypad keypad = Keypad(makeKeymap(keymap), rowPins, colPins, numRows, numCols);
 
 void setup()
 {
-  pinMode(10, OUTPUT);
-  pinMode(11, OUTPUT);
+  pinMode(k1, OUTPUT);
+  pinMode(k2, OUTPUT);
+  pinMode(k3, OUTPUT);
+  pinMode(k4, OUTPUT);
   Serial.begin(9600);
   input = "";
 }
@@ -41,18 +48,20 @@ void loop(){
     if (test == "#") {
       if (input == password[0]) {
         Serial.println("Access to locker 1 granted!");
-        digitalWrite(10, HIGH);
+        digitalWrite(k1, HIGH);
         input = "";
       } else if (input == password[1]) {
         Serial.println("Access to locker 2 granted!");
-        digitalWrite(11, HIGH);
+        digitalWrite(k2, HIGH);
         input = "";
       } else if (input == password[2]) {
         Serial.println("Access to locker 3 granted!");
-        // NOT FUNCTIONAL
+        digitalWrite(k3, HIGH);
+        input = "";
       } else if (input == password[3]) {
         Serial.println("Access to locker 4 granted!");
-        // NOT FUNCTIONAL
+        digitalWrite(k4, HIGH);
+        input = "";
       } else if (input == password[4]) {
         Serial.println("Access to locker 5 granted!");
         // NOT FUNCTIONAL
@@ -61,8 +70,10 @@ void loop(){
         // NOT FUNCTIONAL
       } else {
         input = "";
-        digitalWrite(10, LOW);
-        digitalWrite(11, LOW);
+        digitalWrite(k1, LOW);
+        digitalWrite(k2, LOW);
+        digitalWrite(k3, LOW);
+        digitalWrite(k4, LOW);
       }
     } else {
       input += keypressed;
